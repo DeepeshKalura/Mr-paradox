@@ -34,17 +34,11 @@ prompt_template = PromptTemplate.from_template(
    """
 )
 
-prompt = FewShotPromptTemplate(
-    examples=example,
-    example_prompt=prompt_template,
-    suffix="You are telling a funny joke to user from {weather} {money} {money_value} {location} {dates}, by providing your example when you where in that.",
-    input_variables=["weather", "money", "money_value", "location", "dates"],
 
-)
 
 
 def get_prompt(weather:str, money:str, money_value:str, location:str, dates:str) -> str:
-    return prompt.format(
+    return prompt_template.format(
         weather=weather,
         money=money,
         money_value=money_value,
@@ -53,13 +47,5 @@ def get_prompt(weather:str, money:str, money_value:str, location:str, dates:str)
     )
 
 
-prompt_value = prompt.format(
-    weather="weather",
-    money="money",
-    money_value="money_value",
-    location="location",
-    dates="dates"
-)
-
-print(prompt_value)
+print
 
