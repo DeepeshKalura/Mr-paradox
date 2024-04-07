@@ -1,5 +1,7 @@
 import argparse
 
+from app.llm_model import model_response
+
 def fake_function(destination: str, time: str, buget: str ) -> str:
     """
     This function will return the destination for time travel
@@ -39,6 +41,6 @@ if not any(vars(args).values()):
 elif 'payment' in args:
     print(under_construction(args.payment))
 else:
-    print(fake_function(args.destination, args.time, args.budget))
+    print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money='INR', weather='sunny'))
 
 
