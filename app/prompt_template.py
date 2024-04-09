@@ -31,13 +31,3 @@ def get_prompt(weather:str, money:str, money_value:str, location:str, dates:str)
         location=location,
         dates=dates
     )
-
-
-
-
-
-
-
-
-
-
