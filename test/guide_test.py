@@ -1,6 +1,3 @@
-import os
-import sys
-
 def model_response(location:str, time:str, money_value:str, money:str, weather:str )-> str:
     return "This is a fake model response"
 
