@@ -8,11 +8,6 @@ from app.agents import conversation
 # Set the environment variable
 load_dotenv()
 
-os.environ["WOLFRAM_ALPHA_APPID"] = os.getenv("WOLFRAM_ALPHA_APPID")
-os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
-os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
-os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
-
 
 
 
