@@ -3,12 +3,13 @@ import argparse
 from dotenv import load_dotenv
 
 from app.llm_model import model_response
+from app.agents import conversation
 
 # Set the environment variable
 load_dotenv()
 
 os.environ["WOLFRAM_ALPHA_APPID"] = os.getenv("WOLFRAM_ALPHA_APPID")
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
+os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
 
@@ -54,6 +55,5 @@ if not any(vars(args).values()):
 elif 'payment' in args:
     print(under_construction(args.payment))
 else:
-    print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money='INR', weather='sunny'))
-
-
+    # conversation(args.destination, args.time, args.budget)
+     print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money='INR', weather='sunny'))
