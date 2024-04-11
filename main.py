@@ -4,11 +4,10 @@ from dotenv import load_dotenv
 
 from app.llm_model import model_response
 from app.agents import conversation
+from app.qrcode import generate_qr_code
 
 # Set the environment variable
 load_dotenv()
-
-
 
 
 def fake_function(destination: str, time: str, buget: str ) -> str:
@@ -48,7 +47,8 @@ if not any(vars(args).values()):
     parser.print_help()
 
 elif 'payment' in args:
-    print(under_construction(args.payment))
+    # print(under_construction(args.payment))
+    print(generate_qr_code())
 else:
     # conversation(args.destination, args.time, args.budget)
      print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money='INR', weather='sunny'))
