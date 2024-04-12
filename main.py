@@ -1,24 +1,13 @@
 import os
 import argparse
 from dotenv import load_dotenv
-
+from langchain_community.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from app.llm_model import model_response
-from app.agents import conversation
 from app.qrcode import generate_qr_code
 
 # Set the environment variable
 load_dotenv()
 
-
-def fake_function(destination: str, time: str, buget: str ) -> str:
-    """
-    This function will return the destination for time travel
-    """
-    return f"Destination: {destination}, Time: {time}, Buget: {buget}"
-
-
-def under_construction(value: float) -> str: 
-    return f"This is payment feature is under construction! sob sob sob thanks for {value} money"
 
 
 parser = argparse.ArgumentParser(prog="paradox", usage="%(prog)s request [options]", add_help=True, epilog="Made by Deepesh Kalura")
@@ -47,8 +36,12 @@ if not any(vars(args).values()):
     parser.print_help()
 
 elif 'payment' in args:
-    # print(under_construction(args.payment))
     print(generate_qr_code())
 else:
-    # conversation(args.destination, args.time, args.budget)
-     print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money='INR', weather='sunny'))
+    wolfram = WolframAlphaAPIWrapper()
+    weather = wolfram.run(f"weather {args.destination} time {args.time}")
+    if (args.budget != None):
+        money_value = wolfram.run(f"describe money {args.budget}")
+    else:
+        money_value = "INR"
+    print(model_response(location=args.destination, dates=args.time, money_value=args.budget, money=money_value, weather=weather))
